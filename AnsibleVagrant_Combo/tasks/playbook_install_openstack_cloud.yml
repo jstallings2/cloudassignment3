@@ -1,0 +1,10 @@
+---
+#
+#
+#
+  - name: Install openstack.cloud
+    shell: ansible-galaxy collection install openstack.cloud
+
+  - name: Install community.general
+    shell: ansible-galaxy collection install community.general
+...

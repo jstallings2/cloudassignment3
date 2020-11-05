@@ -1,0 +1,29 @@
+---
+  - name: step 1
+    apt:
+      pkg:
+      - apt-transport-https
+      - gnupg2
+      - curl
+      update_cache: yes
+    become: yes
+
+  - name: step 2
+    shell: echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | tee -a /etc/apt/sources.list.d/kubernetes.list
+    become: yes
+
+  - name: step 3
+    shell: apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 6A030B21BA07F4FB
+    become: yes
+
+  - name: step 4
+    apt:
+      pkg:
+      - kubeadm
+      - kubelet
+      - kubectl
+      - kubernetes-cni
+      update_cache: yes
+    become: yes
+
+...

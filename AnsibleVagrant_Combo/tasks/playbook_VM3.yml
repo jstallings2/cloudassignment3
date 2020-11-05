@@ -1,0 +1,16 @@
+---
+  - name: copy VM3
+    copy:
+      src: ~/VM3
+      dest: ~/
+
+  - name: copy dockerfiles
+    copy:
+      src: ~/dockerfiles
+      dest: ~/
+
+  - name: copy kuberyamls
+    copy:
+      src: ~/kuberyamls
+      dest: ~/
+...

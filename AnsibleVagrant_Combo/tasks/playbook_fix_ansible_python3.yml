@@ -1,0 +1,13 @@
+---
+  - name: step 1
+    shell: update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1
+    become: yes
+
+  - name: step 2
+    shell: update-alternatives --install /usr/bin/python python /usr/bin/python3.6 2
+    become: yes
+
+  - name: step 3
+    shell: update-alternatives --set python /usr/bin/python3.6
+    become: yes
+...

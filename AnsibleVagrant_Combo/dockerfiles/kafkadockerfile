@@ -1,0 +1,14 @@
+FROM ubuntu:18.04
+
+# Run sudo apt-get install curl
+RUN apt update
+RUN apt upgrade -y
+RUN apt install curl -y
+RUN apt update
+RUN apt install default-jdk -y
+RUN curl https://downloads.apache.org/kafka/2.6.0/kafka_2.13-2.6.0.tgz | tar -xz
+
+COPY VM3/server.properties /kafka_2.13-2.6.0/config/
+
+# CMD /bin/bash
+

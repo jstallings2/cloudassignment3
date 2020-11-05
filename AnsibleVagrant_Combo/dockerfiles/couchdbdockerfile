@@ -1,0 +1,4 @@
+FROM couchdb
+
+COPY VM3/local.ini /opt/couchdb/etc/
+

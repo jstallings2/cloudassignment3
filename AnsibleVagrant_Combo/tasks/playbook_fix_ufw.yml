@@ -1,0 +1,31 @@
+---
+  - name: open 2181 (zookeeper)
+    community.general.ufw:
+      rule: allow
+      port: '2181'
+    become: yes
+
+  - name: open 9092 (kafka)
+    community.general.ufw:
+      rule: allow
+      port: '9092'
+    become: yes
+
+  - name: open 5984 (couchdb)
+    community.general.ufw:
+      rule: allow
+      port: '5984'
+    become: yes
+
+  - name: open 5000 (registry)
+    community.general.ufw:
+      rule: allow
+      port: '5000'
+    become: yes
+
+  - name: open 30000s
+    community.general.ufw:
+      rule: allow
+      port: 30000:30005
+    become: yes
+...

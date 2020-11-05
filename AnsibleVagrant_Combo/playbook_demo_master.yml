@@ -1,0 +1,49 @@
+---
+#
+# EECS 4287/5287: Principles of Cloud Computing
+# Author: Aniruddha Gokhale
+# Created: Fall 2017
+# Modified: Fall 2020
+#
+# This playbook is our demo master file
+# The goal is to show how to have a single master file which then
+# includes multiple plays according to some well-designed choreography
+#
+# This file is similar to the one in the AnsibleOnly_Local_and_Cloud folder
+# For now I just kept one play in here but feel free to add more.
+#####################################################
+### Play 1: Get facts from all our VMs
+#
+# Here I show the use of import_tasks from child playbooks
+#####################################################
+- name: "Play 1"
+  hosts: MyLocalVMs          # specified in the MyInventory file
+  remote_user:  ubuntu      # note that the user is ubuntu for 
+                             # vagrant-created VM else use the
+                             # appropriate user name
+
+  gather_facts: no          # We ask Ansible to collect all facts
+  become_user: no            # No need for sudo as we are not installing anything
+
+  tasks:    # the task to be performed (here I am showing the effect of include_)
+   - include_tasks: tasks/playbook_install_openstack_cloud.yml
+   - include_tasks: tasks/playbook_create_cloud_inst.yml
+   - name: Wait 35 seconds for SSH traffic
+     wait_for:
+       timeout: 35
+
+#Play 2
+- name: "Play 2: add stuff to Vms"
+  hosts: MyChameleonVMs
+  remote_user:  cc
+
+  gather_facts: no
+
+  tasks:
+   - include_tasks: tasks/playbook_fix_ansible_python3.yml
+   - include_tasks: tasks/playbook_fix_ufw.yml
+   - include_tasks: tasks/playbook_VM3.yml
+   - include_tasks: tasks/playbook_install_docker.yml
+   - include_tasks: tasks/playbook_install_kubernetes.yml
+...
+

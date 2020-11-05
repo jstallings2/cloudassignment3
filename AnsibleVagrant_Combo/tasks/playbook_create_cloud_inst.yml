@@ -1,0 +1,30 @@
+---
+#
+#
+#
+  - name: Create cloud instances
+    openstack.cloud.server:
+         state: present
+         name: quinn-jacobVM2
+         image: CC-Ubuntu18.04
+         security_groups: [default, couch_access, kafka access, zookeeper access, ENABLE_HTTP_HTTPS, registry_access_port5000, team14]
+         flavor: m1.medium
+         key_name: SharedKey1
+         availability_zone: nova
+         network: 4b484898-92b4-4a4b-9c5d-7d55bd72f1ee 
+         floating_ips:
+           - 129.114.25.96
+
+  - name: Create cloud instances
+    openstack.cloud.server:
+         state: present
+         name: quinn-jacobVM3
+         image: CC-Ubuntu18.04
+         security_groups: [default, couch_access, kafka access, zookeeper access, ENABLE_HTTP_HTTPS, registry_access_port5000, team14]
+         flavor: m1.small
+         key_name: SharedKey1
+         availability_zone: nova
+         network: 4b484898-92b4-4a4b-9c5d-7d55bd72f1ee
+         floating_ips:
+           - 129.114.25.52
+...
