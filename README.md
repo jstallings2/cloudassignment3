@@ -3,7 +3,7 @@
 
 This README contains the steps needed to run the data pipeline with the Assignment 3 configuration.
 1. Run Vagrant Up to start everything up, from there Ansible will take over.
-2. Once the vms have started up, you must ssh into VM2 and create the private registry then build and tag and push all the neccessary docker images (besides consumer)
+2. Once the vms have started up, you must ssh into VM2 and create the private registry then pull the official couchdb and ubuntu18.04 docker images, then build and tag and push all the neccessary docker images (besides consumer)
 3. Once the images are ready you can start up Kubernetes on VM2 and then connect VM3 with the command given
 4. Then using the provided yaml files you start up the zookeeper then the brokers (the brokers yaml's must be edited to add the zookeeper's cluster IP)
 5. Then start up CouchDB using its yaml file
